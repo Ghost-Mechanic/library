@@ -40,6 +40,19 @@ function programDeleteBook(removeBookButton, bookCard, myLibrary) {
     });
 }
 
+// This function programs the change read status button to change the
+// book's read status on the DOM and in the array
+function programReadStatus(changeReadButton, bookCard, myLibrary, readElement) {
+    changeReadButton.addEventListener("click", () => {
+        let bookIndex = parseInt(bookCard.dataset.index);
+
+        // flip the value of the read value of the book's index and update
+        // the text content accordingly
+        myLibrary[bookIndex].read = !(myLibrary[bookIndex].read);
+        readElement.textContent = myLibrary[bookIndex].info();
+    });
+}
+
 // This function creates a new book card element to be added to the DOM and returns it
 function createBookCard(newTitle, newAuthor, newPages, newRead, myLibrary) {
     const newBook = document.createElement("div");
@@ -80,7 +93,9 @@ function createBookCard(newTitle, newAuthor, newPages, newRead, myLibrary) {
     // set bookCards index to the proper number
     newBook.dataset.index = myLibrary.length - 1;
 
+    // call functions to program button effects on the book cards
     programDeleteBook(newDeleteButton, newBook, myLibrary);
+    programReadStatus(newChangeReadButton, newBook, myLibrary, newReadElement);
 
     return newBook;
 }
