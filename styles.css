@@ -60,6 +60,8 @@ body {
 }
     
 .book-card {
+    display: flex;
+    flex-direction: column;
     width: 10rem;
     height: 10rem;
     background-color: white;
@@ -104,6 +106,20 @@ body {
     @media (min-width: 1440px) {
         font-size: 1.10rem;
     }
+}
+
+.book-buttons {
+    margin: 10px;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.remove-book,
+.read-book {
+    font-family: 'Times New Roman', 'Georgia', Times, serif;
+    border-radius: 16px;
+    border: 2px solid rgb(131, 62, 62);
 }
 
 .book-form {

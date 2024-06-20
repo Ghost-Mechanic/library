@@ -23,8 +23,25 @@ function addBookToLibrary(myLibrary, title, author, pages, read) {
     myLibrary.push(newBook);
 }
 
+// This function programs the remove book button to remove the book card
+// and the book object from the array of bookss
+function programDeleteBook(removeBookButton, bookCard, myLibrary) {
+    removeBookButton.addEventListener("click", () => {
+        let bookIndex = parseInt(bookCard.dataset.index);
+        myLibrary.splice(bookIndex, 1);
+        bookCard.remove();
+
+        // update remaining book indices after removal
+        const books = document.getElementsByClassName("book-card");
+        let booksArray = Array.from(books);
+        booksArray.forEach((book, index) => {
+            book.dataset.index = index;
+        });
+    });
+}
+
 // This function creates a new book card element to be added to the DOM and returns it
-function createBookCard(newTitle, newAuthor, newPages, newRead) {
+function createBookCard(newTitle, newAuthor, newPages, newRead, myLibrary) {
     const newBook = document.createElement("div");
     newBook.classList.add("book-card");
     const newTitleElement = document.createElement("h3");
@@ -35,16 +52,35 @@ function createBookCard(newTitle, newAuthor, newPages, newRead) {
     newPageElement.classList.add("pages");
     const newReadElement = document.createElement("div");
     newReadElement.classList.add("read");
+    const newBookButtons = document.createElement("div");
+    newBookButtons.classList.add("book-buttons");
+    const newDeleteButton = document.createElement("button");
+    newDeleteButton.classList.add("remove-book");
+    const newChangeReadButton = document.createElement("button");
+    newChangeReadButton.classList.add("read-book");
 
+    // make text content for new elements according to new values
     newTitleElement.textContent = newTitle;
     newAuthorElement.textContent = newAuthor;
     newPageElement.textContent = newPages;
     newReadElement.textContent = newRead;
+    newDeleteButton.textContent = "Remove";
+    newChangeReadButton.textContent = "Change Read Status";
+
+    // append buttons to book-buttons div
+    newBookButtons.appendChild(newDeleteButton);
+    newBookButtons.appendChild(newChangeReadButton);
 
     newBook.appendChild(newTitleElement);
     newBook.appendChild(newAuthorElement);
     newBook.appendChild(newPageElement);
     newBook.appendChild(newReadElement);
+    newBook.appendChild(newBookButtons);
+
+    // set bookCards index to the proper number
+    newBook.dataset.index = myLibrary.length - 1;
+
+    programDeleteBook(newDeleteButton, newBook, myLibrary);
 
     return newBook;
 }
@@ -99,7 +135,7 @@ function main() {
             let numPages = String(myLibrary[i].pages) + " pages";
             let read = myLibrary[i].info();
     
-            const newBook = createBookCard(title, author, numPages, read);
+            const newBook = createBookCard(title, author, numPages, read, myLibrary);
     
             bookContainer.insertBefore(newBook, newBookButton);
         }
@@ -108,7 +144,9 @@ function main() {
         titleField.value = "";
         authorField.value = "";
         pagesField.value = "";
+        readBox.checked = false;
 
+        // close dialog once new book has been added
         newBookDialog.close();
     });
 }
