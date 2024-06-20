@@ -51,7 +51,7 @@ body {
     border-radius: 32px;
     box-shadow: 0px 0px 6px black;
     font-size: 1rem;
-    font-family:'Times New Roman', 'Georgia', Times, serif;
+    font-family: 'Times New Roman', 'Georgia', Times, serif;
     @media (min-width: 1440px) {
         width: 10rem;
         height: 10rem;
@@ -104,4 +104,37 @@ body {
     @media (min-width: 1440px) {
         font-size: 1.10rem;
     }
+}
+
+.book-form {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;    
+    border-radius: 8px;
+    border-color: rgb(131, 62, 62);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+input {
+    font-family: 'Times New Roman', 'Georgia', Times, serif;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+#submit-button,
+#close-button {
+    width: 45%;
+    font-family: 'Times New Roman', 'Georgia', Times, serif;
+    background-color: rgb(194, 194, 152);
+    border: solid 1px black;
 }

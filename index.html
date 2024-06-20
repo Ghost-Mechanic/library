@@ -9,27 +9,28 @@
 <body>
     <h1 class="page-title">Your Library</h1>
     <div class="container">
-        <div class="book-card">
-            <h3 class="book-title">The Great Gatsby</h3>
-            <h5 class="author">F. Scott Fitzgerald</h5>
-            <div class="pages">200 pages</div>
-            <div class="read">This book has been read</div>
-        </div>
-        <div class="book-card">
-            <h3 class="book-title">Harry Potter</h3>
-            <h5 class="author">J.K. Rowling</h5>
-            <div class="pages">300 pages</div>
-            <div class="read">This book has been read</div></div>
-        <div class="book-card">
-            <h3 class="book-title">The Hobbit</h3>
-            <h5 class="author">J.R.R. Tolkien</h5>
-            <div class="pages">295 pages</div>
-            <div class="read">This book has not been read</div>
-        </div>
         <div class="new-book-container">
             <button class="new-book">+ New Book</button>
         </div>
     </div>
+    <dialog class="book-form">
+        <form class="form" action="" method="dialog">
+            <label for="title">Title:</label>
+            <input type="text" id="title">
+            <label for="author">Author:</label>
+            <input type="text" id="author">
+            <label for="pages">Number of pages:</label>
+            <input type="number" id="number-of-pages">
+            <div class="checkbox">
+                <label for="read">Have you read this book?</label>
+                <input type="checkbox" id="has-read">
+            </div>
+            <div class="buttons">
+                <button id="close-button">Close</button>
+                <button type="submit" id="submit-button">Add book</button>
+            </div>
+        </form>
+    </dialog>
     <script src="javascript.js"></script>
 </body>
 </html>
