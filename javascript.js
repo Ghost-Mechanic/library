@@ -126,6 +126,11 @@ function main() {
 
     // make submit button for dialog element work to add a new book to the library
     submitBookDialog.addEventListener("click", (event) => {
+        if (!(titleField.validity.valid && authorField.validity.valid && pagesField.validity.valid)) {
+            event.preventDefault();
+            return;
+        }
+
         event.preventDefault();
 
         // create new variables for book properties
